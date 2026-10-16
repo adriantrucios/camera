@@ -18,7 +18,10 @@ export default function CoursePage() {
         Course
       </h1>
       <p className="mt-4 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-        {course.audience}. Lessons are short on purpose — read one, shoot the practice, then move on.
+        {course.promise}
+      </p>
+      <p className="mt-3 max-w-2xl text-base leading-7 text-[var(--muted)]">
+        For {course.audience.toLowerCase()}. Read a lesson, shoot the practice the same day, then move on.
       </p>
 
       <ol className="mt-12 space-y-0 border-t border-[var(--line)]">

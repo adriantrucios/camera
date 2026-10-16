@@ -15,6 +15,9 @@ export default function Home() {
       <p className="mt-6 max-w-xl text-lg leading-8 text-[var(--muted)] sm:text-xl">
         {course.tagline}
       </p>
+      <p className="mt-4 max-w-xl text-base leading-7 text-[var(--muted)]">
+        {course.promise}
+      </p>
       <div className="mt-10 flex flex-wrap items-center gap-4">
         <Link
           href={firstLesson ? `/course/${firstLesson.slug}` : "/course"}
