@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Camera
 
-## Getting Started
+A small beginner course on taking better photos with a DSLR or mirrorless camera.
 
-First, run the development server:
+Stack: **Next.js** + **Docker**. Runs self-contained — no external database.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Docker (self-contained)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+docker compose up -d --build
+```
 
-## Learn More
+App listens on host port **3010** → [http://localhost:3010](http://localhost:3010).
 
-To learn more about Next.js, take a look at the following resources:
+Stop:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+docker compose down
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy on docker-01 (`192.168.1.149`)
 
-## Deploy on Vercel
+Example:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# from this machine
+rsync -av --exclude node_modules --exclude .next ./ adrian@192.168.1.149:~/camera/
+ssh adrian@192.168.1.149 "cd ~/camera && docker compose up -d --build"
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Then open `http://192.168.1.149:3010`.
+
+## Content
+
+Lessons live in `src/content/lessons.ts`. Add or edit entries there — pages pick them up automatically.
